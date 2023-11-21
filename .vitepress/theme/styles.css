@@ -1,0 +1,10 @@
+:root {
+	--vp-c-brand: rgb(66, 184, 131);
+	--vp-button-brand-border: rgb(60, 180, 120);
+	--vp-button-brand-bg: rgb(66, 184, 131);
+	--vp-home-hero-name-color: rgb(66, 184, 131);
+	--vp-c-brand-1: rgb(66, 184, 131);
+	--vp-button-brand-hover-border: rgb(90, 214, 171);
+	--vp-button-brand-hover-bg: rgb(90, 214, 171);
+	--vp-c-brand-2: rgb(90, 214, 171);
+}

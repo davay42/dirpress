@@ -1,0 +1,23 @@
+{
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vitepress dev",
+		"build": "vitepress build",
+		"serve": "vitepress preview --port 3000",
+		"deploy": "sh deploy.sh"
+	},
+	"engines": {
+		"node": "18.x"
+	},
+	"packageManager": "pnpm@8.10.0",
+	"dependencies": {
+		"@directus/sdk": "12.0.1",
+		"unocss": "^0.57.1",
+		"vue": "^3.3.7"
+	},
+	"devDependencies": {
+		"pug": "3.0.2",
+		"vitepress": "1.0.0-rc.24"
+	}
+}
