@@ -22,6 +22,9 @@ jobs:
           corepack enable
           corepack prepare pnpm@latest --activate
 
+      - name: Install dependencies
+        run: pnpm install
+
       - name: Build project
         run: pnpm run build
         env: # Or as an environment variable
