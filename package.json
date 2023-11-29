@@ -8,16 +8,17 @@
 		"deploy": "sh deploy.sh"
 	},
 	"engines": {
-		"node": "18.x"
+		"node": "^18.x"
 	},
-	"packageManager": "pnpm@8.10.0",
+	"packageManager": "pnpm@8.11.0",
 	"dependencies": {
 		"@directus/sdk": "12.0.1",
-		"unocss": "^0.57.1",
-		"vue": "^3.3.7"
+		"unocss": "^0.57.7",
+		"vue": "^3.3.9"
 	},
 	"devDependencies": {
+		"@vue/language-plugin-pug": "^1.8.22",
 		"pug": "3.0.2",
-		"vitepress": "1.0.0-rc.24"
+		"vitepress": "1.0.0-rc.31"
 	}
 }

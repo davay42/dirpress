@@ -1,28 +1,32 @@
 import Unocss from 'unocss/vite'
 import { defineConfig } from 'vitepress'
+import { presetIcons, presetUno, presetWebFonts } from 'unocss'
 
 const meta = {
   title: "Unichem Trade Service",
-  logo: '/img/logo.svg',
+  logo: '/logo.svg',
   description: 'Chemical trading company for Asian and global markets',
   company: 'Unichem Trade Service Co Ltd.',
   copyright: 'All rights reserved © 2023',
-  image: '/img/sm.jpg',
+  image: '/logo.png',
   umamiScript: 'https://stats.defucc.me/umami.js',
   umamiId: '30f34da6-4a35-41e4-be2a-8b8a209616acs',
-  author: 'Денис Старов',
+  author: 'UCTS',
   url: 'https://unichemtradeservice.com/',
-  site: 'bioamin.ru',
-  icon: 'img/logo.svg',
+  site: 'unichemtradeservice.com',
+  icon: 'logo.svg',
   color: '#3B9879',
   locale: 'ru-RU',
-  tags: 'Оптовая продажа фармацевтических субстанций, оптовая продажа пищевых ингредиентов, йод кристаллический, пищевые добавки, фармацевтика'
+  tags: 'Bulk chemical trade'
 }
 
 export default defineConfig({
   logo: meta.logo,
   title: meta.title,
   description: meta.description,
+  sitemap: {
+    hostname: 'https://unichemtradeservice.com',
+  },
   markdown: {
     headers: {
       level: [0, 0],
@@ -41,7 +45,22 @@ export default defineConfig({
   },
   vite: {
     plugins: [
-      Unocss()
+      Unocss({
+        presets: [
+          presetUno(),
+          presetIcons({
+            scale: 1.2,
+            warn: true,
+            unit: 'em',
+          }),
+          presetWebFonts({
+            provider: 'bunny',
+            fonts: {
+              sans: 'Inter',
+            },
+          }),
+        ],
+      })
     ],
   },
   head: [

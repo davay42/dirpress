@@ -17,9 +17,10 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
 
-      - uses: pnpm/action-setup@v2
-        with:
-          run_install: true
+      - name: Enable Corepack
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
 
       - name: Build project
         run: pnpm run build

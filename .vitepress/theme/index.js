@@ -1,9 +1,9 @@
-import DefaultTheme from 'vitepress/theme'
+import Layout from './Layout.vue'
 import 'uno.css'
 import './styles.css'
 
 export default {
-  ...DefaultTheme,
+  Layout,
   enhanceApp({ app }) {
 
   },
