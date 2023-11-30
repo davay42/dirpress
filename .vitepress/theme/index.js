@@ -1,6 +1,6 @@
-import Layout from './Layout.vue'
+import Layout from '../../components/Layout.vue'
 import 'uno.css'
-import './styles.css'
+import '@unocss/reset/tailwind.css'
 
 export default {
   Layout,

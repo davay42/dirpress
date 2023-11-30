@@ -12,13 +12,18 @@
 	},
 	"packageManager": "pnpm@8.11.0",
 	"dependencies": {
-		"@directus/sdk": "12.0.1",
-		"unocss": "^0.57.7",
+		"@unocss/reset": "^0.57.7",
+		"@vueuse/core": "^10.6.1",
 		"vue": "^3.3.9"
 	},
 	"devDependencies": {
+		"@directus/sdk": "^13.0.2",
+		"@unocss/extractor-pug": "^0.57.7",
 		"@vue/language-plugin-pug": "^1.8.22",
 		"pug": "3.0.2",
+		"unocss": "^0.57.7",
+		"unplugin-auto-import": "^0.16.7",
+		"unplugin-vue-components": "^0.25.2",
 		"vitepress": "1.0.0-rc.31"
 	}
 }

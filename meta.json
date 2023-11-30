@@ -1,0 +1,18 @@
+{
+	"title": "Unichem Trade Service",
+	"logo": "/logo.svg",
+	"description": "Chemical trading company for Asian and global markets",
+	"company": "Unichem Trade Service Co Ltd.",
+	"copyright": "All rights reserved © 2023",
+	"image": "/logo.png",
+	"umamiScript": "https://stats.defucc.me/umami.js",
+	"umamiId": "30f34da6-4a35-41e4-be2a-8b8a209616acs",
+	"author": "UCTS",
+	"url": "https://unichemtradeservice.com/",
+	"site": "unichemtradeservice.com",
+	"database": "https://cms.unichemtradeservice.com/",
+	"icon": "logo.svg",
+	"color": "#3B9879",
+	"locale": "ru-RU",
+	"tags": "Bulk chemical trade"
+}

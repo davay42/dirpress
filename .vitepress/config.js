@@ -1,31 +1,18 @@
 import Unocss from 'unocss/vite'
 import { defineConfig } from 'vitepress'
 import { presetIcons, presetUno, presetWebFonts } from 'unocss'
+import extractorPug from '@unocss/extractor-pug'
 
-const meta = {
-  title: "Unichem Trade Service",
-  logo: '/logo.svg',
-  description: 'Chemical trading company for Asian and global markets',
-  company: 'Unichem Trade Service Co Ltd.',
-  copyright: 'All rights reserved © 2023',
-  image: '/logo.png',
-  umamiScript: 'https://stats.defucc.me/umami.js',
-  umamiId: '30f34da6-4a35-41e4-be2a-8b8a209616acs',
-  author: 'UCTS',
-  url: 'https://unichemtradeservice.com/',
-  site: 'unichemtradeservice.com',
-  icon: 'logo.svg',
-  color: '#3B9879',
-  locale: 'ru-RU',
-  tags: 'Bulk chemical trade'
-}
+import meta from '../meta.json'
 
 export default defineConfig({
+  srcDir: "content",
+  outDir: "dist",
   logo: meta.logo,
   title: meta.title,
   description: meta.description,
   sitemap: {
-    hostname: 'https://unichemtradeservice.com',
+    hostname: meta.url,
   },
   markdown: {
     headers: {
@@ -46,6 +33,7 @@ export default defineConfig({
   vite: {
     plugins: [
       Unocss({
+        extractors: [extractorPug],
         presets: [
           presetUno(),
           presetIcons({
@@ -70,7 +58,7 @@ export default defineConfig({
     if (pageData.frontmatter?.dynamic) {
       pageData.title = pageData.params?.title
       pageData.description = pageData.params?.description
-      pageData.frontmatter = { ...pageData.frontmatter, ...pageData.params, cover: pageData.params?.cover ? `https://cms.bioamin-rus.ru/assets/${pageData.params?.cover}?fit=cover&format=webp&width=1000` : '' }
+      pageData.frontmatter = { ...pageData.frontmatter, ...pageData.params, cover: pageData.params?.cover ? `${meta.database}assets/${pageData.params?.cover}?fit=cover&format=webp&width=1000` : '' }
     }
   },
   //@ts-ignore
@@ -78,7 +66,7 @@ export default defineConfig({
     const url = pageData.relativePath.split('index.md')[0]
     let image = meta?.image
     if (pageData.frontmatter?.cover) {
-      image = `https://cms.bioamin-rus.ru/assets/${pageData.frontmatter?.cover}?fit=cover&format=webp&width=1000`
+      image = `${meta.database}assets/${pageData.frontmatter?.cover}?fit=cover&format=webp&width=1000`
     }
     const head = [
 
