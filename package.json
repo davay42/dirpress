@@ -2,6 +2,7 @@
 	"version": "1.0.0",
 	"type": "module",
 	"scripts": {
+		"db": "docker compose up",
 		"dev": "vitepress dev",
 		"build": "vitepress build",
 		"serve": "vitepress preview --port 3000",
