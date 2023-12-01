@@ -1,8 +1,12 @@
-import { useItems } from "./directus"
+import { useItem } from "./directus"
+import { downloadImages } from "./downloader.js"
 
 export default {
   async load() {
-    const contacts = await useItems('meta')
-    return contacts
+    const meta = await useItem('meta', 1)
+
+    return meta
   }
+
+
 }

@@ -4,6 +4,7 @@ node_modules
 .DS_Store
 .env
 dist
-database
 uploads
+database
 extensions
+content/public/media

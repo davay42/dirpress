@@ -8,9 +8,81 @@ const { site, theme } = useData()
 
 <template lang='pug'>
 main
-  h1.text-2xl {{ site.title }}
-  h2.text-lg {{ site.description }}
-  content
-  pre {{ data }}
-  pre {{ theme.footer }}
+  header
+    h1.px-20 {{ site.title }}
+    h2.text-lg {{ site.description }}
+  article
+    content.markdown-body
+  footer ©️ {{ data?.company }} 
 </template>
+
+<style lang="postcss">
+html {
+  @apply bg-light-500;
+}
+
+html * {
+  @apply transition duration-500;
+}
+
+
+.markdown-body {
+  line-height: 1.6;
+  @apply leading-loose;
+
+  :is(p) {
+    @apply p-4;
+  }
+
+  :is(td) {
+    @apply p-2;
+  }
+
+  :is(table) {
+    @apply ml-4 mr-6;
+  }
+
+  :is(tr):nth-child(2n) {
+    @apply bg-dark-500 bg-opacity-10;
+  }
+
+  :is(li) {
+    @apply p-1 list-circle;
+  }
+
+  :is(h1) {
+    font-size: 3em;
+    padding-bottom: 0.3em;
+  }
+
+  :is(h2) {
+    font-size: 1.9em;
+    @apply p-4 leading-tight;
+  }
+}
+
+
+.markdown-body .markdown-body h3 {
+  font-size: 1.2em;
+  @apply py-2;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+  padding-left: 3em;
+  border-left: 0.5em #eee solid;
+}
+
+.markdown-body code {
+  padding: 0.2em 0.5em;
+  margin: 0;
+  font-family: monospace;
+  font-size: 90%;
+  border-radius: 3px;
+}
+</style>

@@ -1,0 +1,28 @@
+import {
+  defineConfig,
+  presetIcons,
+  presetUno,
+  presetWebFonts,
+  transformerDirectives,
+  transformerVariantGroup,
+  extractorSplit,
+} from 'unocss'
+
+import extractorPug from '@unocss/extractor-pug'
+
+export default defineConfig({
+  presets: [
+    presetUno(),
+    presetIcons({
+      scale: 1.2,
+      warn: true,
+      unit: 'em',
+    }),
+    presetWebFonts(),
+  ],
+  extractors: [extractorSplit, extractorPug()],
+  transformers: [
+    transformerDirectives(),
+    transformerVariantGroup(),
+  ],
+})
