@@ -14,19 +14,19 @@
 	},
 	"packageManager": "pnpm@8.11.0",
 	"dependencies": {
-		"@unocss/reset": "^0.57.7",
+		"@unocss/reset": "^0.58.0",
 		"@vueuse/core": "^10.6.1",
-		"vue": "^3.3.9"
+		"vue": "^3.3.10"
 	},
 	"devDependencies": {
 		"@directus/sdk": "^13.0.2",
+		"@unocss/extractor-pug": "^0.58.0",
+		"@vue/language-plugin-pug": "^1.8.24",
 		"image-downloader": "^4.3.0",
-		"@unocss/extractor-pug": "^0.57.7",
-		"@vue/language-plugin-pug": "^1.8.22",
 		"pug": "3.0.2",
-		"unocss": "^0.57.7",
-		"unplugin-auto-import": "^0.16.7",
-		"unplugin-vue-components": "^0.25.2",
+		"unocss": "^0.58.0",
+		"unplugin-auto-import": "^0.17.2",
+		"unplugin-vue-components": "^0.26.0",
 		"vitepress": "1.0.0-rc.31"
 	}
 }

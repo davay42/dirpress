@@ -9,7 +9,8 @@ export default {
         {
           category: [
             'slug', 'title'
-          ]
+          ],
+          gallery: ['*']
         }
       ]
     })
