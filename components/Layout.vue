@@ -1,19 +1,32 @@
 <script setup>
-import { useData } from 'vitepress';
+import { useData } from 'vitepress'
+import { data as meta } from '../data/meta.data.js'
 
-import { data } from '../data/meta.data.js'
-
-const { site, theme } = useData()
+const { frontmatter: f, page } = useData()
 </script>
 
 <template lang='pug'>
 main
-  header
-    h1.px-20 {{ site.title }}
-    h2.text-lg {{ site.description }}
+  header.p-0.flex.items-center.gap-8
+    img.w-20(:src="`/media/meta-logo.svg`")
+    .flex.flex-col
+      h1.text-4xl
+        a(href="/") {{ meta.title }}
+      h2.text-lg {{ meta.description }}
+  nav.flex.flex-wrap.items-center.w-full
+    a.p-4.bg-light-700(
+      v-for="link in meta.nav" :key="link"
+      :href="link.url"
+      :aria-current="page.relativePath.includes(link.url.replace('/',''))"
+    ) {{ link.title }} 
+  a.p-4.text-2xl.opacity-40(
+    v-if="f.category"
+    :href="`/catalog/${f.category.slug}/`") {{ f.category.title }}
+  .flex.p-4.text-4xl {{ f.title }}
+  img(v-if="f.cover" :src="`/media/${f.slug}-cover.webp`")
   article
     content.markdown-body
-  footer ©️ {{ data?.company }} 
+  footer ©️ {{ meta.company }} 
 </template>
 
 <style lang="postcss">
@@ -25,6 +38,9 @@ html * {
   @apply transition duration-500;
 }
 
+a[aria-current=true] {
+  @apply bg-light-900;
+}
 
 .markdown-body {
   line-height: 1.6;

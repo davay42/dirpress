@@ -1,4 +1,5 @@
 import { useItems } from "../../data/directus"
+import { downloadImages } from '../../data/downloader.js'
 
 export default {
   async load() {
@@ -9,8 +10,15 @@ export default {
           products: ['slug', 'title', 'description', 'cover']
         }
       ]
-    }
-    )
+    })
+
+    await downloadImages({
+      records: categories,
+      field: 'cover',
+      format: 'webp',
+      width: 2000,
+    })
+
     const products = await useItems('products', {
       fields: [
         '*',
@@ -18,6 +26,13 @@ export default {
           category: ['*']
         }
       ]
+    })
+
+    await downloadImages({
+      records: products,
+      field: 'cover',
+      format: 'webp',
+      width: 2000,
     })
 
     return {

@@ -9,8 +9,6 @@ const { params, frontmatter:p } = useData()
 
 </script>
 
-<a :href="`/catalog/${p.category.slug}/`">{{ p.category.title }}</a>
-
 # {{ p.title }}
 
 > {{ p.description }}

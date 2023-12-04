@@ -6,4 +6,10 @@ title: Contacts
 import { data } from './contacts.data'
 </script>
 
-{{ data }}
+Email: **{{ data.email }}**
+
+Address: **{{ data.address }}**
+
+Registration Number: **{{ data.reg_number }}**
+
+Phone: **{{ data.phone }}**

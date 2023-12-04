@@ -1,5 +1,12 @@
 import Unocss from 'unocss/vite'
 import { defineConfig } from 'vitepress'
+import Components from 'unplugin-vue-components/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+const dirname = path.dirname(fileURLToPath(import.meta.url));
+
 import { downloadImages } from '../data/downloader.js'
 import { useItem } from '../data/directus'
 
@@ -46,29 +53,59 @@ export default defineConfig(async (ctx) => {
 
     },
     vite: {
+      resolve: {
+        alias: {
+          "#/": path.resolve(dirname, "../"),
+        },
+      },
       plugins: [
-        Unocss()
+        Unocss(),
+        AutoImport({
+          include: [
+            /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+            /\.vue$/, /\.vue\?vue/, // .vue
+            /\.md$/, // .md
+          ],
+          imports: [
+            // presets
+            'vue',
+            'vitepress'
+          ],
+          dirs: [
+            './composables'
+          ]
+        }),
+        Components({
+          dirs: ['../components'],
+          extensions: ['vue'],
+          directoryAsNamespace: true,
+          collapseSamePrefixes: true,
+          globalNamespaces: ['global'],
+          include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+          exclude: [/node_modules/, /\.git/],
+        }),
       ],
     },
     head: [
-      ['link', { rel: 'icon', href: `/${iconPath}` }],
+      ['link', { rel: 'icon', href: `/${logoPath}` }],
     ],
     async transformPageData(pageData) {
       if (pageData.frontmatter?.dynamic) {
         pageData.title = pageData.params?.title
         pageData.description = pageData.params?.description
-        pageData.frontmatter = { ...pageData.frontmatter, ...pageData.params, cover: pageData.params?.cover ? `${meta.database}/assets/${pageData.params?.cover}?fit=cover&format=webp&width=1000` : '' }
+
+        pageData.frontmatter = {
+          ...pageData.frontmatter,
+          ...pageData.params,
+        }
       }
     },
     //@ts-ignore
     transformHead({ pageData }) {
       const url = pageData.relativePath.split('index.md')[0]
       let image = meta?.image
-      if (pageData.frontmatter?.cover) {
-        image = `${meta.database}/assets/${pageData.frontmatter?.cover}?fit=cover&format=webp&width=1000`
-      }
-      const head = [
 
+      const head = [
         process.env.NODE_ENV === "production" && meta.stat_script && meta.stat_data_id ? ["script", { async: true, defer: true, [meta.stat_data_tag || "data-website-id"]: meta.stat_data_id, src: meta.stat_script }] : null,
 
         meta.icon ? ["link", { rel: "icon", type: "image/svg+xml", href: `/${iconPath}` }] : null,

@@ -1,8 +1,7 @@
-# UNICHEM
+# Dirpress
 
-30 Sukhumvit 61, Khlong Tan Nuea,
-Watthana, Bangkok, 10110, Thailand
+## Directus + Vitepress template
 
-Reg. No. 0105566120422
+npx directus-template-cli@latest extract
 
-contact@unichemtradeservice.com
+$ npx directus-template-cli@latest apply
