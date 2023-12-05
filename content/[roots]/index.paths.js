@@ -13,6 +13,7 @@ export default {
       fields: [
         '*',
         {
+          files: [{ directus_files_id: ['*'] }],
           pages: [
             '*',
             { root: ['slug', 'title'] }
@@ -34,7 +35,7 @@ export default {
       return {
         params: {
           ...page,
-          root: page?.slug
+          roots: page?.slug
         }, content
       }
     })

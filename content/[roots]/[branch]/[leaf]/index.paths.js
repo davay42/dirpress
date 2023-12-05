@@ -1,5 +1,5 @@
-import { useItems } from "../../../data/directus"
-import { downloadImages } from '../../../data/downloader.js'
+import { useItems } from "../../../../data/directus"
+import { downloadImages } from '../../../../data/downloader.js'
 
 export default {
   async paths() {
@@ -15,7 +15,7 @@ export default {
           {
             root: {
               root: {
-                _empty: true
+                _nempty: true
               }
             }
           }
@@ -25,13 +25,13 @@ export default {
         '*',
         {
           root: ['*', {
-            root: ['slug']
+            root: ['*']
           }],
           pages: [
             '*',
             {
               root: ['*', {
-                root: ['slug']
+                root: ['*']
               }]
             }
           ]
@@ -49,11 +49,13 @@ export default {
     return pages.map(page => {
       let content = page.content
       delete page.content
+
       return {
         params: {
           ...page,
-          root: page.root?.slug,
-          branch: page?.slug
+          roots: page.root?.root?.slug,
+          branch: page.root?.slug,
+          leaf: page?.slug
         }, content
       }
     })
