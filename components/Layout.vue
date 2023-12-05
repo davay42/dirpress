@@ -1,11 +1,13 @@
 <script setup>
 import { useData } from 'vitepress'
 import { data as meta } from '../data/meta.data.js'
+import { data as pages } from '../data/pages.data.js'
 
 import '../styles/markdown.postcss'
 import '../styles/main.postcss'
 
-const { frontmatter: f, page } = useData()
+const { frontmatter: f, page, params } = useData()
+
 </script>
 
 <template lang='pug'>
@@ -16,13 +18,13 @@ main
       h1.text-4xl
         a(href="/") {{ meta.title }}
       h2.text-lg {{ meta.description }}
-
+  p {{  }}
   nav
     a.p-4.bg-light-700(
-      v-for="link in meta.nav" :key="link"
-      :href="link.url"
-      :aria-current="page.relativePath.includes(link.url.replace('/',''))"
-    ) {{ link.title }} 
+      v-for="main in pages.main" :key="main"
+      :href="`/${main.slug}/`"
+      :aria-current="page.relativePath.includes(main.slug)"
+    ) {{ main.title }} 
 
   img.cover(
     v-if="f.cover" 
@@ -41,7 +43,12 @@ main
     .text-lg Gallery
     .p-0(v-for="image in f.gallery") {{ image.directus_files_id }}
 
-  pre {{ f }}
+  .flex.flex-col.gap-4.p-4 
+    a.p-4.bg-light-100.shadow-xl.text-2xl.rounded-xl(
+      v-for="page in f.pages" :key="page"
+      :href="'/' + [page?.root?.root?.slug, page?.root?.slug, page.slug].join('/') + '/'"
+      ) {{ page.title }}
+
   footer ©️ {{ meta.company }} 
 
 </template>
