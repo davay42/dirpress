@@ -52,7 +52,11 @@ main
 
       aside.files(v-if="f?.files?.length>0")
         //- pre {{ f.files }}
-        .p-2.flex.flex-col.gap-2(v-for="file in f.files" :key="file") 
+        a.p-2.flex.flex-col.gap-2(
+          v-for="file in f.files" :key="file"
+          download
+          :href="`/files/${file.directus_files_id.filename_download}`"
+          ) 
           .text-xl {{ file.directus_files_id.title }}
           .p-0.text-xs  {{ file.directus_files_id.filename_disk }} - {{ file.directus_files_id.filename_download }} - {{ (file.directus_files_id.filesize/1024).toFixed() }} kB
 

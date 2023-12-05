@@ -1,5 +1,5 @@
 import { useItems } from "./directus"
-import { downloadImages } from './downloader.js'
+import { downloadFiles, downloadImages } from './downloader.js'
 
 export default {
   async load() {
@@ -12,6 +12,9 @@ export default {
       fields: [
         'title', 'slug', 'description',
         {
+          files: [{
+            directus_files_id: ['*']
+          }],
           root: ['slug', 'title'],
           pages: [
             'slug', 'title', 'root.slug'
@@ -25,6 +28,10 @@ export default {
       field: 'cover',
       format: 'webp',
       width: 2000,
+    })
+
+    await downloadFiles({
+      records: main
     })
 
     return {
