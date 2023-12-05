@@ -33,15 +33,7 @@ export async function downloadImages({
     urls.push({ url, exists: fs.existsSync(filePath), slug: (r.slug || r.id), dest: filePath, fileName, path: `${folder}/${fileName}` })
   }
 
-  const chunkSize = 5;
-  for (let i = 0; i < urls.length; i += chunkSize) {
-    const chunk = urls.slice(i, i + chunkSize);
-    await Promise.all(chunk.map(rec => {
-      if (rec.exists) return
-      console.log('downloading file:', (rec.slug || rec.id) + '-' + field + '.webp')
-      return download.image(rec)
-    }));
-  }
+  downloadList(urls)
 
   return urls
 }
@@ -64,8 +56,6 @@ export async function downloadFiles({
 
     for (let file of r[field]) {
       let info = file.directus_files_id
-      console.log(info)
-
       let fileName = info.filename_download;
       let filePath = path.resolve(dest, fileName)
       let url = `${server}/assets/${info.id}&download`
@@ -73,7 +63,12 @@ export async function downloadFiles({
     }
   }
 
-  const chunkSize = 5;
+  downloadList(urls)
+
+  return urls
+}
+
+async function downloadList(urls, chunkSize = 5) {
   for (let i = 0; i < urls.length; i += chunkSize) {
     const chunk = urls.slice(i, i + chunkSize);
     await Promise.all(chunk.map(rec => {
@@ -82,6 +77,4 @@ export async function downloadFiles({
       return download.image(rec)
     }));
   }
-
-  return urls
 }

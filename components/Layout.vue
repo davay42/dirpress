@@ -50,15 +50,17 @@ main
 
       content.markdown-body
 
-      aside.files(v-if="f?.files?.length>0")
+      aside.files.px-4.flex.flex-wrap(v-if="f?.files?.length>0")
         //- pre {{ f.files }}
-        a.p-2.flex.flex-col.gap-2(
+        a.p-4.flex.items-center.gap-2.bg-light-700.shadow-sm.hover-shadow.rounded(
           v-for="file in f.files" :key="file"
           download
           :href="`/files/${file.directus_files_id.filename_download}`"
           ) 
-          .text-xl {{ file.directus_files_id.title }}
-          .p-0.text-xs  {{ file.directus_files_id.filename_disk }} - {{ file.directus_files_id.filename_download }} - {{ (file.directus_files_id.filesize/1024).toFixed() }} kB
+          .i-la-file.text-4xl
+          .flex.flex-col
+            .text-xl {{ file.directus_files_id.title }}
+            .font-mono.text-xs {{ file.directus_files_id.filename_download }} - {{ (file.directus_files_id.filesize/1024).toFixed() }} kB
 
       aside.gallery(v-if="f.gallery")
         .text-lg Gallery
