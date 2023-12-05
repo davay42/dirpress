@@ -5,6 +5,7 @@ import { data as pages } from '../data/pages.data.js'
 
 import '../styles/markdown.postcss'
 import '../styles/main.postcss'
+import '../styles/transitions.postcss'
 
 const { frontmatter: f, page, params } = useData()
 
@@ -36,8 +37,9 @@ main
       :href="`/catalog/${f.category.slug}/`") {{ f.category.title }}
     .flex.p-2 {{ f.title }}
 
-  article.flex-auto
-    content.markdown-body
+  transition(name="fade")
+    article.flex-auto(:key="page.route")
+      content.markdown-body
 
   aside.gallery(v-if="f.gallery")
     .text-lg Gallery
@@ -46,7 +48,7 @@ main
   .flex.flex-col.gap-4.p-4 
     a.p-4.bg-light-100.shadow-xl.text-2xl.rounded-xl(
       v-for="page in f.pages" :key="page"
-      :href="'/' + [page?.root?.root?.slug, page?.root?.slug, page.slug].join('/') + '/'"
+      :href="'/' + [page?.root?.root?.slug, page?.root?.slug, page.slug].filter(Boolean).join('/') + '/'"
       ) {{ page.title }}
 
   footer ©️ {{ meta.company }} 

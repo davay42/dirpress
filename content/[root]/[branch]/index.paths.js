@@ -1,9 +1,10 @@
 import { useItems } from "../../../data/directus"
+import { downloadImages } from '../../../data/downloader.js'
 
 export default {
   async paths() {
 
-    const categories = await useItems('pages', {
+    const pages = await useItems('pages', {
       filter: {
         _and: [
           {
@@ -38,14 +39,21 @@ export default {
       ]
     })
 
-    return categories.map(category => {
-      let content = category.content
-      delete category.content
+    await downloadImages({
+      records: pages,
+      field: 'cover',
+      format: 'webp',
+      width: 2000,
+    })
+
+    return pages.map(page => {
+      let content = page.content
+      delete page.content
       return {
         params: {
-          ...category,
-          root: category.root?.slug,
-          branch: category?.slug
+          ...page,
+          root: page.root?.slug,
+          branch: page?.slug
         }, content
       }
     })

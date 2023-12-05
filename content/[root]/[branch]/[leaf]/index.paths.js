@@ -1,4 +1,5 @@
 import { useItems } from "../../../../data/directus"
+import { downloadImages } from '../../../../data/downloader.js'
 
 export default {
   async paths() {
@@ -32,6 +33,13 @@ export default {
           ]
         }
       ]
+    })
+
+    await downloadImages({
+      records: pages,
+      field: 'cover',
+      format: 'webp',
+      width: 2000,
     })
 
     return pages.map(page => {
