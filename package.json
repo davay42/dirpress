@@ -11,6 +11,11 @@
 	"engines": {
 		"node": "^20.x"
 	},
+	"pnpm": {
+		"overrides": {
+			"rollup": "npm:@rollup/wasm-node"
+		}
+	},
 	"packageManager": "pnpm@8.11.0",
 	"dependencies": {
 		"@unocss/reset": "^0.58.0",
