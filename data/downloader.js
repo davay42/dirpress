@@ -4,7 +4,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import fs from 'node:fs'
 
-import { server } from './directus.js'
+import { loadEnv } from 'vitepress'
+
+const env = loadEnv('', process.cwd())
+
+export const server = env.VITE_DIRECTUS_URL
 
 
 export async function downloadImages({
