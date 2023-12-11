@@ -6,7 +6,7 @@
 		"db": "docker compose up",
 		"dev": "vitepress dev",
 		"build": "vitepress build",
-		"serve": "vitepress preview --port 80"
+		"serve": "vitepress preview --port 3000"
 	},
 	"engines": {
 		"node": "^20.x"
