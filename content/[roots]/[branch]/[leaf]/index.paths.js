@@ -6,16 +6,20 @@ export default {
 
     const pages = await useItems('pages', {
       filter: {
-        _and: [
+        "_and": [
           {
-            root: {
-              _nempty: true
+            "root": {
+              slug: {
+                "_nempty": true
+              }
             }
           },
           {
             root: {
               root: {
-                _nempty: true
+                slug: {
+                  "_nempty": true
+                }
               }
             }
           }
@@ -46,7 +50,7 @@ export default {
       width: 2000,
     })
 
-    return pages.map(page => {
+    return pages?.map(page => {
       let content = page.content
       delete page.content
 

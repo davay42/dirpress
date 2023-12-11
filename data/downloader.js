@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import fs from 'node:fs'
 
-import { server } from './server.json'
+import { server } from './directus.js'
 
 
 export async function downloadImages({

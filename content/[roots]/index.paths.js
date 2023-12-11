@@ -7,7 +7,9 @@ export default {
     const pages = await useItems('pages', {
       filter: {
         root: {
-          _empty: true
+          slug: {
+            "_empty": true
+          }
         }
       },
       fields: [
@@ -29,7 +31,7 @@ export default {
       width: 2000,
     })
 
-    return pages.map(page => {
+    return pages?.map(page => {
       let content = page.content
       delete page.content
       return {

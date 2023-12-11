@@ -4,4 +4,4 @@
 
 npx directus-template-cli@latest extract
 
-$ npx directus-template-cli@latest apply
+npx directus-template-cli@latest apply

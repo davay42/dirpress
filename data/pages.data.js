@@ -6,7 +6,9 @@ export default {
     const main = await useItems('pages', {
       filter: {
         root: {
-          _empty: true
+          slug: {
+            "_empty": true
+          }
         }
       },
       fields: [

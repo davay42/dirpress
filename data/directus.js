@@ -1,6 +1,10 @@
 import { createDirectus, rest, staticToken, readItem, readItems } from '@directus/sdk'
 
-import { server } from './server.json'
+import { loadEnv } from 'vitepress'
+
+const env = loadEnv('', process.cwd())
+
+export const server = env.VITE_DIRECTUS_URL
 
 export const client = createDirectus(server).with(rest())
 
