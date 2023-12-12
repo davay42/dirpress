@@ -24,12 +24,12 @@ export default {
       ]
     })
 
-    await downloadImages({
-      records: pages,
-      field: 'cover',
-      format: 'webp',
-      width: 2000,
-    })
+    // await downloadImages({
+    //   records: pages,
+    //   field: 'cover',
+    //   format: 'webp',
+    //   width: 2000,
+    // })
 
     return pages?.map(page => {
       let content = page.content

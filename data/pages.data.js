@@ -25,12 +25,12 @@ export default {
       ]
     })
 
-    await downloadImages({
-      records: main,
-      field: 'cover',
-      format: 'webp',
-      width: 2000,
-    })
+    // await downloadImages({
+    //   records: main,
+    //   field: 'cover',
+    //   format: 'webp',
+    //   width: 2000,
+    // })
 
     await downloadFiles({
       records: main
