@@ -14,25 +14,25 @@ export default defineConfig(async (ctx) => {
 
   const meta = await useItem('meta', 1)
 
-  await downloadImages({
-    records: [meta],
-  })
+  // await downloadImages({
+  //   records: [meta],
+  // })
 
-  const logos = await downloadImages({
-    records: [meta],
-    field: 'logo',
-    format: 'svg'
-  })
+  // const logos = await downloadImages({
+  //   records: [meta],
+  //   field: 'logo',
+  //   format: 'svg'
+  // })
 
-  const logoPath = logos[0].path
+  // const logoPath = logos[0].path
 
-  const icons = await downloadImages({
-    records: [meta],
-    field: 'icon',
-    format: 'svg'
-  })
+  // const icons = await downloadImages({
+  //   records: [meta],
+  //   field: 'icon',
+  //   format: 'svg'
+  // })
 
-  const iconPath = icons[0].path
+  // const iconPath = icons[0].path
 
   return {
     srcDir: "content",
@@ -87,7 +87,7 @@ export default defineConfig(async (ctx) => {
       ],
     },
     head: [
-      ['link', { rel: 'icon', href: `/${logoPath}` }],
+      // ['link', { rel: 'icon', href: `/${logoPath}` }],
     ],
     async transformPageData(pageData) {
       if (pageData.frontmatter?.dynamic) {
@@ -108,7 +108,7 @@ export default defineConfig(async (ctx) => {
       const head = [
         process.env.NODE_ENV === "production" && meta.stat_script && meta.stat_data_id ? ["script", { async: true, defer: true, [meta.stat_data_tag || "data-website-id"]: meta.stat_data_id, src: meta.stat_script }] : null,
 
-        meta.icon ? ["link", { rel: "icon", type: "image/svg+xml", href: `/${iconPath}` }] : null,
+        // meta.icon ? ["link", { rel: "icon", type: "image/svg+xml", href: `/${iconPath}` }] : null,
 
         meta?.author ? ["meta", { name: "author", content: meta?.author }] : null,
 
