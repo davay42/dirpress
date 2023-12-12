@@ -32,9 +32,9 @@ export default {
     //   width: 2000,
     // })
 
-    await downloadFiles({
-      records: main
-    })
+    // await downloadFiles({
+    //   records: main
+    // })
 
     return {
       main
