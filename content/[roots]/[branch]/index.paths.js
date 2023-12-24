@@ -41,7 +41,7 @@ export default {
           ]
         }
       ]
-    })
+    }) || []
 
     // await downloadImages({
     //   records: pages,

@@ -23,7 +23,7 @@ export default {
           ]
         }
       ]
-    })
+    }) || []
 
     // await downloadImages({
     //   records: main,

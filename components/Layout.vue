@@ -14,7 +14,8 @@ const route = useRoute()
 </script>
 
 <template lang='pug'>
-main
+main(v-if="!meta?.initiated") Not initiated yet...
+main(v-else)
   header.main
     img.logo(:src="`/media/meta-logo.svg`")
     .flex.flex-col
