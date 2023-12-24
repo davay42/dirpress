@@ -1,10 +1,10 @@
 version: "3"
 services:
   directus:
-    image: 'directus/directus:10.8'
+    image: "directus/directus:10.8"
     volumes:
-      - 'directus-uploads:/directus/uploads'
-      - 'directus-extensions:/directus/extensions'
+      - "directus-uploads:/directus/uploads"
+      - "directus-extensions:/directus/extensions"
     ports:
       - 8055:8055
     depends_on:
@@ -21,39 +21,39 @@ services:
       - SERVICE_FQDN_DIRECTUS
       - KEY=$SERVICE_BASE64_64_KEY
       - SECRET=$SERVICE_BASE64_64_SECRET
-      - 'ADMIN_EMAIL=${ADMIN_EMAIL:-admin@example.com}'
+      - "ADMIN_EMAIL=${ADMIN_EMAIL:-admin@example.com}"
       - ADMIN_PASSWORD=$SERVICE_PASSWORD_ADMIN
       - DB_CLIENT=postgres
       - DB_HOST=postgresql
       - DB_PORT=5432
-      - 'DB_DATABASE=${POSTGRESQL_DATABASE:-directus}'
+      - "DB_DATABASE=${POSTGRESQL_DATABASE:-directus}"
       - DB_USER=$SERVICE_USER_POSTGRESQL
       - DB_PASSWORD=$SERVICE_PASSWORD_POSTGRESQL
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - WEBSOCKETS_ENABLED=false
-  
+
   postgresql:
-    image: 'postgres:16-alpine'
+    image: "postgres:16-alpine"
     volumes:
-      - 'directus-postgresql-data:/var/lib/postgresql/data'
+      - "directus-postgresql-data:/var/lib/postgresql/data"
     environment:
-      - 'POSTGRES_USER=${SERVICE_USER_POSTGRESQL}'
-      - 'POSTGRES_PASSWORD=${SERVICE_PASSWORD_POSTGRESQL}'
-      - 'POSTGRES_DB=${POSTGRESQL_DATABASE:-directus}'
+      - "POSTGRES_USER=${SERVICE_USER_POSTGRESQL}"
+      - "POSTGRES_PASSWORD=${SERVICE_PASSWORD_POSTGRESQL}"
+      - "POSTGRES_DB=${POSTGRESQL_DATABASE:-directus}"
     healthcheck:
       test:
         - CMD-SHELL
-        - 'pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}'
+        - "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"
       interval: 5s
       timeout: 5s
       retries: 10
-  
+
   redis:
-    image: 'redis:7-alpine'
-    command: 'redis-server --appendonly yes'
+    image: "redis:7-alpine"
+    command: "redis-server --appendonly yes"
     volumes:
-      - 'directus-redis-data:/data'
+      - "directus-redis-data:/data"
     healthcheck:
       test:
         - CMD
@@ -75,10 +75,15 @@ services:
     volumes:
       - ./:/app
       - node_modules:/app/node_modules
-      
+
 volumes:
   directus-uploads:
+    external: true
   directus-redis-data:
+    external: true
   directus-extensions:
+    external: true
   directus-postgresql-data:
+    external: true
   node_modules:
+    external: true
